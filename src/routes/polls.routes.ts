@@ -36,7 +36,7 @@ pollsRoutes.post("/", ensureAuthenticated, async (request, response) => {
                 }
             }
         }
-    })
+    }) 
 
     return response.json({ code })
 })

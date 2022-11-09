@@ -62,11 +62,11 @@ pollsRoutes.post("/join", ensureAuthenticated, async (request, response) => {
     })
 
     if(!poll) {
-        throw new Error("Poll not found!!")
+        return response.status(400).json({message: "Poll not found!!"})
     } 
 
     if(poll.Participant.length > 0) {
-        throw new Error("User already participates in the pool!!")
+        return response.status(400).json({message: "User already participates in the pool!!"})
     } 
     
     await prisma.participant.create({

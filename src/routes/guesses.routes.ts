@@ -13,7 +13,7 @@ guessesRoutes.get("games/count", async (request, response) => {
     return response.json({count: count})
 })
 
-guessesRoutes.post("/polls/:pollId/:gameId/guesses", ensureAuthenticated, async (request, response) => {
+guessesRoutes.post("/polls/:pollId/games/:gameId/guesses", ensureAuthenticated, async (request, response) => {
     const createGuessParams = z.object({
         pollId: z.string(),
         gameId: z.string()
@@ -72,7 +72,7 @@ guessesRoutes.post("/polls/:pollId/:gameId/guesses", ensureAuthenticated, async 
 
     if(game.date < new Date()) {
         return response.status(400).send({
-            message: "You cannot send guesses after the game date,"
+            message: "You cannot send guesses after the game date"
         })
     }
 
